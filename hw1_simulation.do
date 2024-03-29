@@ -1,7 +1,12 @@
 qui {
 	clear //clear current data from memory
 	cls //clear result windows
-	
+	if c(os)=="Windows" { //methods
+	    global workdir "`c(pwd)'\"
+	}
+	else {
+	    global workdir "`c(pwd)'/"
+	}
 	capture log close //close open logs
 	log using ${workdir}simulation.log, replace //start logging
 	set seed 340600 //set seed for reproducibility
